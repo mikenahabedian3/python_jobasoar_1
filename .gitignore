@@ -1,0 +1,17 @@
+# .gitignore
+__pycache__/
+*.py[cod]
+*.sqlite3
+venv/
+*.git
+*.swp
+*.DS_Store
+/static/
+.env
+*.pyc
+*.pyo
+*.pyd
+.Python
+db.sqlite3
+*.git
+docs/_build/
