@@ -1,0 +1,73 @@
+<!-- UserApp/templates/UserApp/home.html -->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial, sans-serif';
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: #e9ecef;
+        }
+        main form {
+            text-align: center;
+        }
+        main form input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+        main form button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Jobasoar</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="Logo" style="height: 50px;"></a>
+        <nav>
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </nav>
+    </header>
+    <main>
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search for jobs...">
+            <button type="submit">Search</button>
+        </form>
+    </main>
+</body>
+</html>

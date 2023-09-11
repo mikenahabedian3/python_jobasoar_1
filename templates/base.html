@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'UserApp/style.css' %}"> <!-- Link to your CSS file -->
+    <title>Jobasoar</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}"><img src="{% static 'UserApp/logo.png' %}" alt="Logo"></a> <!-- Replace 'logo.png' with your logo filename -->
+        <div class="auth-buttons">
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- UserApp/templates/UserApp/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobasoar</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Jobasoar</h1>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- This block will be replaced with content from child templates -->
+        {% endblock %}
+    </main>
+</body>
+</html>
