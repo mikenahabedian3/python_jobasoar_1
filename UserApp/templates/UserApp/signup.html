@@ -1,6 +1,5 @@
 <!-- UserApp/templates/UserApp/signup.html -->
 
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -31,30 +30,47 @@
             
                 <form action="{% url 'signup' %}" method="POST">
                     {% csrf_token %}
+                    
+                    {{ form.non_field_errors }}
+                    
                     <div class="mb-3">
-                        <label for="id_username" class="form-label">Username</label>
-                        <input type="text" name="username" maxlength="150" class="form-control" id="id_username" required>
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
                     </div>
                     <div class="mb-3">
-                        <label for="id_first_name" class="form-label">First Name</label>
-                        <input type="text" name="first_name" class="form-control" id="id_first_name" required>
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
                     </div>
                     <div class="mb-3">
-                        <label for="id_last_name" class="form-label">Last Name</label>
-                        <input type="text" name="last_name" class="form-control" id="id_last_name" required>
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
                     </div>
                     <div class="mb-3">
-                        <label for="id_email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="id_email" required>
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
                     </div>
                     <div class="mb-3">
-                        <label for="id_password1" class="form-label">Password</label>
-                        <input type="password" name="password1" class="form-control" id="id_password1" required>
+                        <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+                        {{ form.password1 }}
+                        {{ form.password1.errors }}
                     </div>
                     <div class="mb-3">
-                        <label for="id_password2" class="form-label">Confirm Password</label>
-                        <input type="password" name="password2" class="form-control" id="id_password2" required>
+                        <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+                        {{ form.password2 }}
+                        {{ form.password2.errors }}
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">User Type</label>
+                        <div>
+                            {{ form.user_type }}
+                        </div>
+                        {{ form.user_type.errors }}
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </form>
                 

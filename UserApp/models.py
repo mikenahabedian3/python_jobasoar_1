@@ -2,11 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
-
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
         ('JS', 'Job Seeker'),
-        ('CO', 'Company'),
+        ('EM', 'Employer'),
         ('AD', 'Admin'),
     )
     
@@ -30,9 +29,8 @@ class User(AbstractUser):
         related_query_name="user",
     )
 
-
-class Company(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='company')
+class Employer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employer')
     name = models.CharField(max_length=255)
     xml_feed = models.FileField(upload_to='xml_feeds/', null=True, blank=True)
     payment_details = models.CharField(max_length=255, null=True, blank=True)
@@ -40,7 +38,7 @@ class Company(models.Model):
 class Job(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='jobs')
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
     location = models.CharField(max_length=255)
     date_posted = models.DateTimeField(auto_now_add=True)
     promoted = models.BooleanField(default=False)
