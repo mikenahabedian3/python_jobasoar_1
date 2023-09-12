@@ -1,4 +1,14 @@
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
+
+# Your User class definition
+
+class Employer(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='employer')
+    # ... the rest of your fields and other model definitions
+
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
@@ -30,7 +40,7 @@ class User(AbstractUser):
     )
 
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employer')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='employer')
     name = models.CharField(max_length=255)
     xml_feed = models.FileField(upload_to='xml_feeds/', null=True, blank=True)
     payment_details = models.CharField(max_length=255, null=True, blank=True)

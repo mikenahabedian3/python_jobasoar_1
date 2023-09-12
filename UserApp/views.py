@@ -1,11 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from .forms import SignUpForm
-from .models import User, JobSeeker, Employer  # Ensure to import the necessary models
-
-# Other views can be here
+from .models import User, JobSeeker, Employer, Job  # Ensure to import the Job model
 
 class LoginView(TemplateView):
     template_name = "UserApp/login.html"
@@ -50,3 +48,11 @@ class DashboardView(TemplateView):
 
 def home(request):
     return render(request, 'UserApp/home.html')
+
+class JobListView(ListView):
+    model = Job
+    template_name = 'UserApp/job_list.html'
+
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'UserApp/job_detail.html'
