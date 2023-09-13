@@ -1,20 +1,93 @@
 <!-- UserApp/templates/UserApp/base.html -->
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial, sans-serif';
+            background-color: #282828; /* Adding a deep black background color */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #5a189a; /* Adding a purple background to the header */
+            border-bottom: 3px solid #0d6efd; /* Adding a purple border at the bottom */
+        }
+        header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #d4e157; /* Hulk green for the nav links */
+            font-weight: bold;
+        }
+        header nav a:hover {
+            color: #0d6efd; /* Adding a transition effect for hover state */
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: #282828; /* Black background for main */
+        }
+        main form {
+            width: 50%;
+            border-radius: 15px;
+            background-color: #3d3d3d; /* Lighter black for the form background */
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adding a subtle shadow to the form */
+        }
+        .form-label {
+            color: #d4e157; /* Green color for the label */
+        }
+        .form-control {
+            background-color: #444; /* Darker background for the input field */
+            border: 1px solid #5a189a; /* Purple border */
+            color: #d4e157; /* Green color for the text */
+        }
+        .form-control::placeholder {
+            color: #828282; /* Lighter color for the placeholder text */
+        }
+        .btn {
+            background-color: #5a189a; /* Purple button */
+            border: none;
+        }
+        .btn:hover {
+            background-color: #712fcc; /* A slightly different shade of purple for hover effect on button */
+        }
+        .user-info {
+            color: #d4e157; /* Green color for user information */
+            font-weight: bold;
+            margin-right: 20px;
+        }
+    </style>
     <title>Jobasoar</title>
 </head>
 <body>
     <header>
-        <h1>Welcome to Jobasoar</h1>
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="Logo" style="height: 50px;"></a>
+        <nav>
+            {% if user.is_authenticated %}
+                <!-- Display user information if logged in -->
+                <span class="user-info">{{ user.username }} ({{ user.email }})</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <!-- Display login and signup links if not logged in -->
+                <a href="{% url 'custom_login' %}">Log In</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </nav>
     </header>
-
     <main>
-        {% block content %}
-        <!-- This block will be replaced with content from child templates -->
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 </body>
 </html>

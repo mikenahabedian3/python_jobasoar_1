@@ -3,6 +3,18 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
+
+
+class JobListing(models.Model):
+    job_title = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    job_description = models.TextField()
+    apply_url = models.URLField()
+
+    def __str__(self):
+        return self.job_title
+        
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, **extra_fields):
         if not username:
@@ -58,6 +70,9 @@ class Employer(models.Model):
     name = models.CharField(max_length=255)
     xml_feed = models.FileField(upload_to='xml_feeds/', null=True, blank=True)
     payment_details = models.CharField(max_length=255, null=True, blank=True)
+    
+    def __str__(self):
+        return self.name  # This method defines how the model is displayed as a string
 
 class Job(models.Model):
     title = models.CharField(max_length=255)

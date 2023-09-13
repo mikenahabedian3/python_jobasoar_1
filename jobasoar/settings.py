@@ -69,10 +69,15 @@ WSGI_APPLICATION = 'jobasoar.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'jobasoar_db',
+        'USER': 'michaelnaha',  # Your PostgreSQL username
+        'PASSWORD': 'Lava123$',  # Your PostgreSQL password
+        'HOST': 'localhost',
+        'PORT': '5432',  # the default PostgreSQL port
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -109,3 +114,7 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add LOGOUT_REDIRECT_URL setting to redirect to the home page after logout
+LOGOUT_REDIRECT_URL = '/'
+

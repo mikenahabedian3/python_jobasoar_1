@@ -1,0 +1,20 @@
+<!-- jobasoar/templates/admin_dashboard.html -->
+<!-- this stays in templates not templates/UserApp so it's accessible by all app -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+<ul>
+    {% for employer in employers %}
+        <li>
+            {{ employer.name }}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="xml_file">
+                <input type="submit" value="Upload XML">
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

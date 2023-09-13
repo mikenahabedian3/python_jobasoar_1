@@ -8,3 +8,6 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'user_type')
+
+class XMLUploadForm(forms.Form):
+    xml_file = forms.FileField(label='Upload XML File')
