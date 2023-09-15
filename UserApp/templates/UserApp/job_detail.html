@@ -3,10 +3,30 @@
 {% extends 'UserApp/base.html' %}
 
 {% block content %}
-    <h2>{{ job.title }}</h2>
-    <p>Employer: {{ job.employer.name }}</p>
-    <p>Description: {{ job.description }}</p>
-    <p>Location: {{ job.location }}</p>
-    <p>Date Posted: {{ job.date_posted }}</p>
-    <p>Promoted: {{ job.promoted }}</p>
+<main class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ job.title }}</h2>
+                    <p class="card-text"><strong>Employer:</strong> {{ job.employer.name }}</p>
+                    <div class="card-text">
+                        <strong>Description:</strong> 
+                        <p>{{ job.description }}</p>
+                    </div>
+                    <p class="card-text"><strong>Location:</strong> {{ job.location }}</p>
+                    <p class="card-text"><strong>Date Posted:</strong> {{ job.date_posted }}</p>
+                    <p class="card-text"><strong>Promoted:</strong> {{ job.promoted }}</p>
+                    
+                    <!-- Apply Button -->
+                    {% if job.apply_url %}
+                    <div class="apply-button mt-4">
+                        <a href="{{ job.apply_url }}" class="btn btn-primary">Apply</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}
