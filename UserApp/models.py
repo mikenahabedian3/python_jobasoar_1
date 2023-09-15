@@ -13,7 +13,7 @@ class JobListing(models.Model):
 
     def __str__(self):
         return self.job_title
-        
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, **extra_fields):
@@ -66,13 +66,13 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
 class Employer(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='employer')
     name = models.CharField(max_length=255)
     xml_feed = models.FileField(upload_to='xml_feeds/', null=True, blank=True)
     payment_details = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):
-        return self.name  # This method defines how the model is displayed as a string
+        return self.name
+
 
 class Job(models.Model):
     title = models.CharField(max_length=255)
@@ -81,6 +81,7 @@ class Job(models.Model):
     location = models.CharField(max_length=255)
     date_posted = models.DateTimeField(auto_now_add=True)
     promoted = models.BooleanField(default=False)
+    apply_url = models.URLField(null=True, blank=True)  # Allow the field to be nullable and blank in forms
 
 class JobSeeker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='job_seeker')
