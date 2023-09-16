@@ -70,16 +70,16 @@
 </head>
 <body>
     <header>
-        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="Logo" style="height: 50px;"></a>
+        <a href="{% url 'jobasoar:home' %}"><img src="{% static 'logo.png' %}" alt="Logo" style="height: 50px;"></a>
         <nav>
             {% if user.is_authenticated %}
                 <!-- Display user information if logged in -->
                 <span class="user-info">{{ user.username }} ({{ user.email }})</span>
-                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'jobasoar:logout' %}">Logout</a>
             {% else %}
                 <!-- Display login and signup links if not logged in -->
-                <a href="{% url 'custom_login' %}">Log In</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'jobasoar:login' %}">Log In</a> <!-- Updated URL name -->
+                <a href="{% url 'jobasoar:signup' %}">Sign Up</a>
             {% endif %}
         </nav>
     </header>
@@ -88,4 +88,3 @@
     </main>
 </body>
 </html>
-

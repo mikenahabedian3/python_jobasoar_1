@@ -1,37 +1,23 @@
-from django.urls import path
-from . import views  # Import views from your app
-from .views import LoginView
+from django.urls import path, include
+from .views import HomeView, SignUpView, DashboardView, LoginView, admin_dashboard, upload_xml, JobListView, JobDetailView, JobListXMLView  
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
-
+app_name = 'jobasoar'
 
 urlpatterns = [
-    # Home URL - the landing page when users visit your site
-    path('', views.home, name='home'),  
-
-    # Dashboard URL - where users are redirected after successful login/signup
-    path('dashboard/', views.DashboardView.as_view(), name='dashboard'),  
-    
-    # Login URL - where users can log in to their accounts
-    path('login/', views.LoginView.as_view(), name='custom_login'),  
-    
-    # Sign up URL - where new users can create accounts
-    path('signup/', views.SignUpView.as_view(), name='signup'),  
-    
-    # Admin Dashboard URL - for administrators
-    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
-    
-    # XML Upload URL - for uploading XML files
-    path('upload-xml/', views.upload_xml, name='upload_xml'),
-    
-    # Job listing and detail URLs - where users can view job listings and details
-    path('jobs/', views.JobListView.as_view(), name='job_list'),
-    path('jobs/<int:pk>/', views.JobDetailView.as_view(), name='job_detail'),
-
-    # XML job listings URL - to generate XML response for job listings
-    path('job-list-xml/', views.JobListXMLView.as_view(), name='job_list_xml'),
-    
-    # Logout URL - now users can log out once logged in
+    path('', HomeView.as_view(), name='home'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('login/', LoginView.as_view(), name='login'),  # Changed the name from 'custom_login' to 'login'
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('admin-dashboard/', admin_dashboard, name='admin_dashboard'),
+    path('upload-xml/', upload_xml, name='upload_xml'),
+    path('jobs/', JobListView.as_view(), name='job_list'),
+    path('jobs/<int:pk>/', JobDetailView.as_view(), name='job_detail'),
+    path('job-list-xml/', JobListXMLView.as_view(), name='job_list_xml'),
     path('logout/', LogoutView.as_view(), name='logout'),
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

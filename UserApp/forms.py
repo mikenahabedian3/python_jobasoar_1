@@ -11,4 +11,16 @@ class SignUpForm(UserCreationForm):
 
 class XMLUploadForm(forms.Form):
     xml_file = forms.FileField(label='Upload XML File')
-    employer = forms.ModelChoiceField(queryset=Employer.objects.all(), required=True, help_text='Select the employer')
+    # Remove the employer field since it's associated with the logged-in user
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Get the user from the kwargs
+        super(XMLUploadForm, self).__init__(*args, **kwargs)
+
+        if user:
+            # Filter the employers based on the logged-in user
+            self.fields['employer'] = forms.ModelChoiceField(
+                queryset=Employer.objects.filter(user=user),
+                required=True,
+                help_text='Select the employer'
+            )

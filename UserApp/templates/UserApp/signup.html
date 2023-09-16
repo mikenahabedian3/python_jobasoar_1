@@ -19,7 +19,7 @@
                     </div>
                 {% endif %}
             
-                <form action="{% url 'signup' %}" method="POST">
+                <form action="{% url 'jobasoar:signup' %}" method="POST"> <!-- Updated URL name here -->
                     {% csrf_token %}
                     
                     {{ form.non_field_errors }}
@@ -66,7 +66,7 @@
                 </form>
                 
                 <div class="mt-3">
-                    <a href="{% url 'custom_login' %}">Already have an account? Log in</a>
+                    <a href="{% url 'jobasoar:login' %}">Already have an account? Log in</a> <!-- Updated URL name here -->
                 </div>
             </div>
         </div>

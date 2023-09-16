@@ -75,6 +75,13 @@ class Employer(models.Model):
 
 
 class Job(models.Model):
+    # Choices for the job_type field
+    JOB_TYPE_CHOICES = [
+        ('FULL_TIME', 'Full Time'),
+        ('PART_TIME', 'Part Time'),
+        # Add other job types as needed
+    ]
+
     title = models.CharField(max_length=255)
     description = models.TextField()
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
@@ -82,6 +89,13 @@ class Job(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     promoted = models.BooleanField(default=False)
     apply_url = models.URLField(null=True, blank=True)  # Allow the field to be nullable and blank in forms
+
+    salary = models.CharField(max_length=255, null=True, blank=True)  # Store salary information, if available
+    job_type = models.CharField(max_length=50, null=True, blank=True, choices=JOB_TYPE_CHOICES)  # Store the job type, if available
+
+    class Meta:
+        verbose_name = "Job"
+        verbose_name_plural = "Jobs"
 
 class JobSeeker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='job_seeker')
