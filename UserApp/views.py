@@ -1,11 +1,11 @@
-from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, DetailView, CreateView  
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic.edit import CreateView
 from .forms import SignUpForm, XMLUploadForm
 from .models import User, JobSeeker, Employer, Job
 import xml.etree.ElementTree as ET
 from django.db.models import Q
-from django.contrib.auth.views import LoginView as AuthLoginView 
+from django.contrib.auth.views import LoginView as AuthLoginView
 from django.urls import reverse_lazy
 from .decorators import admin_required
 from django.core.exceptions import ValidationError
@@ -18,7 +18,7 @@ class HomeView(TemplateView):
 
 class SignUpView(CreateView):
     form_class = SignUpForm
-    success_url = reverse_lazy('custom_login')
+    success_url = reverse_lazy('custom_login')  # Ensure 'custom_login' is the correct URL pattern name
     template_name = 'UserApp/signup.html'
 
 @admin_required
@@ -47,9 +47,8 @@ class JobListXMLView(TemplateView):
     pass
 
 class DashboardView(TemplateView):
-    # DashboardView logic
-    pass
+    template_name = "UserApp/dashboard.html"
 
 class LoginView(AuthLoginView):
-    template_name = 'UserApp/login.html'  # Specify the correct path to your login template
-    success_url = reverse_lazy('UserApp:dashboard')  # Assuming you have a URL pattern named 'dashboard' in your UserApp's urls.py
+    template_name = 'UserApp/login.html'
+    success_url = reverse_lazy('UserApp:dashboard')

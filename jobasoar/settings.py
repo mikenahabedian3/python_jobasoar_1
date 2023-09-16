@@ -93,7 +93,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'jobasoar:dashboard'
 
 # Add these lines at the end of your settings.py file
 MEDIA_URL = '/media/'
