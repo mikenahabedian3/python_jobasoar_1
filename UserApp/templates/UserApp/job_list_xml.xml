@@ -1,3 +1,5 @@
+<!-- jobasoar/UserApp/templates/UserApp/job_list_xml.xml -->
+
 <?xml version="1.0" encoding="UTF-8"?>
 <jobs>
     {% for job in jobs %}
@@ -7,9 +9,6 @@
         <location>{{ job.location }}</location>
         <description>{{ job.description }}</description>
         <applyURL>{{ job.apply_url }}</applyURL>
-        <applyButton>
-            <a href="{{ job.apply_url }}">Apply Now</a>
-        </applyButton>
     </job>
     {% endfor %}
 </jobs>

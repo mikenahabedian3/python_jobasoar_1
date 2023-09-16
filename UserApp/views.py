@@ -10,7 +10,6 @@ from .decorators import admin_required
 from django.core.exceptions import ValidationError
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 class HomeView(TemplateView):
@@ -18,7 +17,7 @@ class HomeView(TemplateView):
 
 class SignUpView(CreateView):
     form_class = SignUpForm
-    success_url = reverse_lazy('custom_login')  # Ensure 'custom_login' is the correct URL pattern name
+    success_url = reverse_lazy('UserApp:login')  # Updated to use 'UserApp' namespace
     template_name = 'UserApp/signup.html'
 
 @admin_required
@@ -35,16 +34,20 @@ def upload_xml(request):
     pass
 
 class JobListView(ListView):
-    model = Job  # Use the Job model to get the list of jobs
-    template_name = "UserApp/job_list.html"  # Specify the template name
+    model = Job
+    template_name = "UserApp/job_list.html"
 
 class JobDetailView(DetailView):
-    model = Job  # Specify the model to use
-    template_name = "UserApp/job_detail.html"  # Specify the template name
+    model = Job
+    template_name = "UserApp/job_detail.html"
 
-class JobListXMLView(TemplateView):
-    # TODO: Implement JobListXMLView logic
-    pass
+class JobListXMLView(ListView):
+    model = Job
+    template_name = 'UserApp/job_list_xml.xml'
+    
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs['content_type'] = 'application/xml'
+        return super().render_to_response(context, **response_kwargs)
 
 class DashboardView(TemplateView):
     template_name = "UserApp/dashboard.html"

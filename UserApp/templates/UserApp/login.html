@@ -13,8 +13,8 @@
                         {{ form.password.errors }}
                     </div>
                 {% endif %}
-                <!-- Updated the action URL to use the 'jobasoar:login' namespace and URL name -->
-                <form action="{% url 'jobasoar:login' %}" method="POST">
+                <!-- Updated the action URL to use the 'UserApp:login' namespace and URL name -->
+                <form action="{% url 'UserApp:login' %}" method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
