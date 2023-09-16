@@ -16,7 +16,7 @@ urlpatterns = [
     path('jobs/', JobListView.as_view(), name='job_list'),
     path('jobs/<int:pk>/', JobDetailView.as_view(), name='job_detail'),
     path('job-list-xml/', JobListXMLView.as_view(), name='job_list_xml'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='jobasoar:home'), name='logout'),  # Redirect to home page after logout
 ]
 
 if settings.DEBUG:

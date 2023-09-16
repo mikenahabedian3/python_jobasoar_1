@@ -1,81 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial, sans-serif';
-            background-color: #f8f9fa; /* Changed to a lighter background color */
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #343a40; /* Changed to a darker header color */
-        }
-        header nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #f8f9fa; /* Changed to a white color for better contrast */
-            font-weight: bold;
-        }
-        header nav a:hover {
-            color: #bdbdbd; /* Changed to a lighter gray for hover effect */
-        }
-        .user-info {
-            color: #f8f9fa; /* Changed to white color for better contrast */
-            font-weight: bold;
-            margin-right: 20px;
-        }
-        .job-card {
-            border: none; /* Removing the border */
-            border-radius: 15px; /* Adding rounded corners */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
-            transition: transform 0.2s; /* Adding a transition effect */
-        }
-        .job-card:hover {
-            transform: scale(1.02); /* Adding a subtle zoom effect on hover */
-        }
-        .job-card .card-body {
-            padding: 16px; /* Adjusting the padding */
-        }
-        .job-card .card-title {
-            margin-bottom: 8px; /* Adding some margin to the bottom */
-        }
-        .card-text {
-            color: #6c757d; /* Gray color for the text */
-        }
-    </style>
-    <title>Jobasoar</title>
-</head>
-<body>
-<header>
-    <a href="/"><img src="/static/logo.png" alt="Logo" style="height: 50px;"></a>
-    <nav>
-        <!-- Display user information if logged in -->
-        <span class="user-info">michaelnaha (mikenahabedian3@gmail.com)</span>
-        <a href="/logout/">Logout</a>
-    </nav>
-</header>
+{% extends "UserApp/base.html" %}
+{% load static %}
+
+{% block content %}
 <main class="container py-5">
     <h2 class="text-center mb-4" style="color: #343a40;">Job Listings</h2>
     <div class="row">
+        {% for job in object_list %}
         <div class="col-md-4">
             <div class="card job-card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title" style="color: #343a40;">Executive Administrative Assistant</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">DHL</h6>
-                    <p class="card-text">A brief description of the job role and the skills required.</p>
-                    <a href="/jobs/1/" class="card-link">View details</a>
+                    <h5 class="card-title" style="color: #343a40;">{{ job.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ job.company_name }}</h6>
+                    <p class="card-text">{{ job.description|truncatewords:20 }}</p>
+                    <a href="{% url 'jobasoar:job_detail' job.pk %}" class="card-link">View details</a>
                 </div>
             </div>
         </div>
-        <!-- Repeat similar blocks for other job listings -->
+        {% endfor %}
     </div>
 </main>
-</body>
-</html>
+{% endblock %}
