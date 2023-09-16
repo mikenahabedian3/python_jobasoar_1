@@ -30,8 +30,36 @@ def parse_xml_jobs(xml_file, employer):
     pass
 
 def upload_xml(request):
-    # TODO: Implement the XML upload logic
-    pass
+    if request.method == 'POST':
+        form = XMLUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            xml_file = request.FILES['xml_file']
+            selected_employer = form.cleaned_data['employer']
+            
+            # Parse the XML file and create job listings
+            tree = ET.parse(xml_file)
+            root = tree.getroot()
+
+            for job_node in root.findall('job'):
+                # Create a job associated with the selected employer
+                Job.objects.create(
+                    title=job_node.findtext('title'),
+                    description=job_node.findtext('description'),
+                    employer=selected_employer,
+                    location=job_node.findtext('location'),
+                    date_posted=job_node.findtext('datePosted'),
+                    promoted=job_node.findtext('promoted') == 'true',
+                    apply_url=job_node.findtext('applyUrl'),
+                    salary=job_node.findtext('salary'),
+                    job_type=job_node.findtext('jobType'),
+                    job_id=job_node.findtext('jobId'),  # Adding job_id
+                )
+            
+            return redirect('/jobs')
+    else:
+        form = XMLUploadForm(user=request.user)
+
+    return render(request, 'UserApp/upload_xml.html', {'form': form})
 
 class JobListView(ListView):
     model = Job

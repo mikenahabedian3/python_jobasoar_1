@@ -93,9 +93,16 @@ class Job(models.Model):
     salary = models.CharField(max_length=255, null=True, blank=True)  # Store salary information, if available
     job_type = models.CharField(max_length=50, null=True, blank=True, choices=JOB_TYPE_CHOICES)  # Store the job type, if available
 
+    qualifications = models.TextField(null=True, blank=True)  # New field to store qualifications required for the job
+    responsibilities = models.TextField(null=True, blank=True)  # New field to store job responsibilities
+    benefits = models.TextField(null=True, blank=True)  # New field to store job benefits
+
     class Meta:
         verbose_name = "Job"
         verbose_name_plural = "Jobs"
+
+    def __str__(self):
+        return self.title
 
 class JobSeeker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='job_seeker')

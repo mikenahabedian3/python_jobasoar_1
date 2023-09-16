@@ -4,10 +4,15 @@
 <jobs>
     {% for job in jobs %}
     <job>
+        <jobId>{{ job.pk }}</jobId>
         <title>{{ job.title }}</title>
         <employer>{{ job.employer.name }}</employer>
         <location>{{ job.location }}</location>
         <description>{{ job.description }}</description>
+        <datePosted>{{ job.date_posted|date:"c" }}</datePosted>
+        <promoted>{{ job.promoted }}</promoted>
+        <salary>{{ job.salary }}</salary>
+        <jobType>{{ job.job_type }}</jobType>
         <applyURL>{{ job.apply_url }}</applyURL>
     </job>
     {% endfor %}

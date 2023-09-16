@@ -10,7 +10,7 @@
             <div class="card job-card mb-4">
                 <div class="card-body">
                     <h5 class="card-title" style="color: #343a40;">{{ job.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ job.company_name }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ job.employer.name }}</h6>
                     <p class="card-text">{{ job.description|truncatewords:20 }}</p>
                     <a href="{% url 'UserApp:job_detail' job.pk %}" class="card-link">View details</a>
                 </div>

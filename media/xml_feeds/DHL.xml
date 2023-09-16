@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobListings>
+  <job>
+    <job_id>1</job_id>
+    <title>Logistics Coordinator</title>
+    <description>
+      Responsible for coordinating and overseeing the safe and secure handling of goods. Must have a background in logistics and excellent organizational skills.
+    </description>
+    <employer>[Employer_Name_Here]</employer>
+    <location>Los Angeles, CA, USA</location>
+    <datePosted>2023-09-15T00:00:00Z</datePosted>
+    <promoted>false</promoted>
+    <applyUrl>[Your_URL_Here]</applyUrl>
+    <salary>[Salary_Details_Here]</salary>
+    <jobType>Full-Time</jobType>
+  </job>
+  <job>
+    <job_id>2</job_id>
+    <title>Remote Customer Service Representative</title>
+    <description>
+      Serve as the first point of contact for customers, addressing inquiries and resolving problems. Requires excellent communication skills and a customer-first attitude.
+    </description>
+    <employer>[Employer_Name_Here]</employer>
+    <location>Remote</location>
+    <datePosted>2023-09-15T00:00:00Z</datePosted>
+    <promoted>false</promoted>
+    <applyUrl>[Your_URL_Here]</applyUrl>
+    <salary>[Salary_Details_Here]</salary>
+    <jobType>Part-Time</jobType>
+  </job>
+  <job>
+    <job_id>3</job_id>
+    <title>Hybrid Marketing Manager</title>
+    <description>
+      Lead a team of marketing professionals in a hybrid work environment. Requires experience in digital marketing and leadership skills.
+    </description>
+    <employer>[Employer_Name_Here]</employer>
+    <location>Hybrid</location>
+    <datePosted>2023-09-15T00:00:00Z</datePosted>
+    <promoted>false</promoted>
+    <applyUrl>[Your_URL_Here]</applyUrl>
+    <salary>[Salary_Details_Here]</salary>
+    <jobType>Full-Time</jobType>
+  </job>
+  <job>
+    <job_id>4</job_id>
+    <title>Hourly Contract Graphic Designer</title>
+    <description>
+      Looking for a graphic designer for a contract position paid hourly. Requires experience with Adobe Creative Suite.
+    </description>
+    <employer>[Employer_Name_Here]</employer>
+    <location>San Francisco, CA, USA</location>
+    <datePosted>2023-09-15T00:00:00Z</datePosted>
+    <promoted>false</promoted>
+    <applyUrl>[Your_URL_Here]</applyUrl>
+    <salary>[Salary_Details_Here]</salary>
+    <jobType>Hourly</jobType>
+  </job>
+</jobListings>
